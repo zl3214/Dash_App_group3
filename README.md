@@ -1,4 +1,4 @@
-# Project 2: Shiny App Development
+# Project 2: Dash App Development
 
 ### [Project Description](doc/project2_desc.md)
 
@@ -6,15 +6,9 @@ Term: Fall 2023
 
 ![screenshot](doc/figs/map.jpg)
 
-In this second project of GR5243 Applied Data Science, we develop a *Exploratory Data Analysis and Visualization* shiny app using one of **the OpenFEMA data sets** of your choice. See [Project 2 Description](doc/project2_desc.md) for more details.  
+In this project, we leverage the Dash framework to build a web application designed for comprehensive analysis of disaster incidents across U.S. states. The application not only examines the frequency and types of disasters occurring in each state but also correlates them with the corresponding federal emergency funding that has been granted. This enables stakeholders to gain insights into the effectiveness of resource allocation and to identify areas in need of additional support. The application incorporates advanced geospatial visualization techniques to provide a more intuitive understanding of the allocation of federal funding and the types of disasters occurring across U.S. states. Utilizing a color-coded map, the intensity of the color signifies either the magnitude of granted federal funding or the frequency of disaster incidents. Users can interactively click on individual states to access detailed data and insights. This Dash-powered platform offers a nuanced and comprehensive view of the disaster landscape and associated federal financial support across different regions of the United States.
 
-The **learning goals** for this project is:
 
-- business intelligence for data science
-- data cleaning
-- data visualization
-- systems development/design life cycle
-- shiny app/shiny server
 
 *The above general statement about project 2 can be removed once you are finished with your project. It is optional.
 
