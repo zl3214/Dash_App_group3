@@ -187,7 +187,34 @@ disaster_count = df_summary.groupby('state_abbrev')['incidentType'].count().rese
 disaster_count.columns = ['state_abbrev', 'total_disasters']
 grouped_df = pd.merge(grouped_df, disaster_count, on='state_abbrev', how='left')
 
-grouped_df.head()
+
+disaster_color_map = {
+    'Fire': 'red',
+    'Flood': 'blue',
+    'Hurricane': 'purple',
+    'Tropical Storm': 'cyan',
+    'Severe Storm': 'grey',
+    'Winter Storm': 'white',
+    'Tornado': 'green',
+    'Snowstorm': 'lightblue',
+    'Earthquake': 'brown',
+    'Biological': 'pink',
+    'Mud/Landslide': 'darkgreen',
+    'Coastal Storm': 'darkblue',
+    'Other': 'black',
+    'Severe Ice Storm': 'lightgrey',
+    'Dam/Levee Break': 'orange',
+    'Typhoon': 'darkcyan',
+    'Volcanic Eruption': 'darkred',
+    'Freezing': 'lightcyan',
+    'Toxic Substances': 'yellow',
+    'Chemical': 'lightgreen',
+    'Terrorist': 'magenta',
+    'Drought': 'beige',
+    'Human Cause': 'tan',
+    'Fishing Losses': 'navy',
+    'Tsunami': 'teal'
+}
 
 app = dash.Dash(__name__, title = "Disaster-Funding Dash App")
 
@@ -215,6 +242,7 @@ app.layout = html.Div([
     [Input('choropleth-map', 'clickData'),
      Input('indicator-dropdown', 'value')]
 )
+
 def update_graph(clickData, selected_indicator):
     color_scale = custom_tiffany_scale if selected_indicator == 'total_funding' else custom_red_scale
 
@@ -234,10 +262,11 @@ def update_graph(clickData, selected_indicator):
         state_abbrev = clickData['points'][0].get('location', None)
         if state_abbrev:
             state_name = state_abbrev
-
+            
             if selected_indicator == 'total_disasters':
                 pie_data = df_summary[df_summary['state_abbrev'] == state_name]['incidentType'].value_counts()
-                fig_pie = px.pie(pie_data, names=pie_data.index, values=pie_data.values)
+                fig_pie = px.pie(pie_data, names=pie_data.index, values=pie_data.values, 
+                                 color=pie_data.index, color_discrete_map=disaster_color_map)  
                 pie_style = {'display': 'block'}
 
             total_value = grouped_df[grouped_df['state_abbrev'] == state_abbrev][selected_indicator].values[0]
@@ -246,6 +275,8 @@ def update_graph(clickData, selected_indicator):
             )
 
     return fig_map, fig_pie, pie_style
+
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
