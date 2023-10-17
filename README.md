@@ -1,5 +1,7 @@
 5243 Project2
+
 Updated App Url:https://final-5243-project2-group3-19844997ba63.herokuapp.com/
+
 Improved based on the comments from presentation, including making color of disaster consistent for each state and describing more logically.
 
 Team members: Zan Li, Jianjie Sun
